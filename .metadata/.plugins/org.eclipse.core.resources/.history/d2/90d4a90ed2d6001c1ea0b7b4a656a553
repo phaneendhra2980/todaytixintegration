@@ -1,0 +1,9 @@
+package variables;
+
+import io.restassured.RestAssured;
+
+public class Configuration {
+	public static final String BASE_URL = "https://www.encoretickets.co.uk/";
+	RestAssured.baseURI =="http://inventory-service.tixuk.io/api/v4/availability/products/6362/";
+
+}

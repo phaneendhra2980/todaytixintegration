@@ -1,0 +1,85 @@
+package services;
+
+import static io.restassured.RestAssured.given;
+import static variables.Configuration.BASE_API_URL;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.HttpStatus;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.common.mapper.TypeRef;
+
+public class SeatsService {
+
+	
+	public static void  getSeats(String date, String time) {
+
+		RestAssured.baseURI = BASE_API_URL;	
+		
+		Response response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets").when()
+				.get("products/6362/areas?date=" + date + "&time=" + time + "&quantity=2&includeSeatsAttributes=true").then()
+				.log().ifError().assertThat().statusCode(HttpStatus.SC_OK).extract().response();
+
+		
+			
+		JSONObject inputJSONOBject = new JSONObject(response.getBody().asString());
+		Utils.JsonParser.getKey(inputJSONOBject, "seatLumps");	
+
+	}
+	
+	public static void  getRestrictedSeats(String date, String time) {
+
+		RestAssured.baseURI = BASE_API_URL;	
+		
+		Response response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets").when()
+				.get("products/6362/areas?date=" + date + "&time=" + time + "&quantity=2&includeSeatsAttributes=true").then()
+				.log().ifError().assertThat().statusCode(HttpStatus.SC_OK).extract().response();
+
+		
+          
+    		
+     	JSONObject inputJSONOBject = new JSONObject(response.getBody().asString()); 
+        //Printing JSON object  
+        System.out.println("JSON Object");  
+        System.out.println(inputJSONOBject);  
+        //Getting languages JSON array from the JSON object  
+        JSONArray jsonArray = inputJSONOBject.getJSONArray("response");  
+        //Printing JSON array  
+        System.out.println("JSON Array");  
+        System.out.println(jsonArray);  
+        //Creating an empty ArrayList of type Object  
+        ArrayList<Object> listdata = new ArrayList<Object>();  
+          
+        //Checking whether the JSON array has some value or not  
+        if (jsonArray != null) {   
+              
+            //Iterating JSON array  
+            for (int i=0;i<jsonArray.length();i++){   
+                  
+                //Adding each element of JSON array into ArrayList  
+                listdata.add(jsonArray.get(i));  
+            }   
+        }  
+        //Iterating ArrayList to print each element  
+  
+        System.out.println("Each element of ArrayList");  
+        for(int i=0; i<listdata.size(); i++) {  
+            //Printing each element of ArrayList  
+            System.out.println(listdata.get(i));  
+        }  
+//		
+//		     // JSONObject inputJSONOBject = new JSONObject(response.getBody().asString());
+        // Utils.JsonParser.getKey(inputJSONOBject, "seats");
+        // ArrayList<String> list = new ArrayList<String>();
+ 		//list.add(Utils.JsonParser.getKey(inputJSONOBject, "seats"));
+
+	}
+
+}

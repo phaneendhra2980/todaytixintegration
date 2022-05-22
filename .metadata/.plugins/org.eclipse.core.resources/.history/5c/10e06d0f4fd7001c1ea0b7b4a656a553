@@ -1,0 +1,36 @@
+package models;
+
+public class Request {
+	 private String body;
+	 Query QueryObject;
+	 UrlParams UrlParamsObject;
+
+
+	 // Getter Methods 
+
+	 public String getBody() {
+	  return body;
+	 }
+
+	 public Query getQuery() {
+	  return QueryObject;
+	 }
+
+	 public UrlParams getUrlParams() {
+	  return UrlParamsObject;
+	 }
+
+	 // Setter Methods 
+
+	 public void setBody(String body) {
+	  this.body = body;
+	 }
+
+	 public void setQuery(Query queryObject) {
+	  this.QueryObject = queryObject;
+	 }
+
+	 public void setUrlParams(UrlParams urlParamsObject) {
+	  this.UrlParamsObject = urlParamsObject;
+	 }
+	}

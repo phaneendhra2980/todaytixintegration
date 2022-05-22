@@ -1,0 +1,39 @@
+package models;
+
+import com.google.gson.annotations.SerializedName;
+
+   
+public class Request {
+
+   @SerializedName("body")
+   String body;
+
+   @SerializedName("query")
+   Query query;
+
+   @SerializedName("urlParams")
+   UrlParams urlParams;
+
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+    public String getBody() {
+        return body;
+    }
+    
+    public void setQuery(Query query) {
+        this.query = query;
+    }
+    public Query getQuery() {
+        return query;
+    }
+    
+    public void setUrlParams(UrlParams urlParams) {
+        this.urlParams = urlParams;
+    }
+    public UrlParams getUrlParams() {
+        return urlParams;
+    }
+    
+}

@@ -1,0 +1,14 @@
+package Utils;
+
+
+
+import static variables.Configuration.*;
+
+public class InventoryService {
+
+	public static String getCheckOutJourney() {
+
+		
+	}
+
+}

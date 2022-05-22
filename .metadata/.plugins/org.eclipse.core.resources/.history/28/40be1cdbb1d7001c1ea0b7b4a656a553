@@ -1,0 +1,7 @@
+package pages;
+
+public class SearchPage {
+	
+	By SearchField=By.xpath("//input[@placeholder='Search by show or attraction' and @type='search']");
+
+}

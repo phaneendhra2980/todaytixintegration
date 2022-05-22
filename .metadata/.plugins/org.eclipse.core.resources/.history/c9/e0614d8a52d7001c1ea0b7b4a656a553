@@ -1,0 +1,40 @@
+package com.models;
+import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
+
+   
+public class Response {
+
+   @SerializedName("displayCurrency")
+   String displayCurrency;
+
+   @SerializedName("availableCount")
+   int availableCount;
+
+   @SerializedName("areas")
+   List<Areas> areas;
+
+
+    public void setDisplayCurrency(String displayCurrency) {
+        this.displayCurrency = displayCurrency;
+    }
+    public String getDisplayCurrency() {
+        return displayCurrency;
+    }
+    
+    public void setAvailableCount(int availableCount) {
+        this.availableCount = availableCount;
+    }
+    public int getAvailableCount() {
+        return availableCount;
+    }
+    
+    public void setAreas(List<Areas> areas) {
+        this.areas = areas;
+    }
+    public List<Areas> getAreas() {
+        return areas;
+    }
+    
+}

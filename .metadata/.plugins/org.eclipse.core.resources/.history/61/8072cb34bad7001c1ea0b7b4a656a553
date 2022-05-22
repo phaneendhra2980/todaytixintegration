@@ -1,0 +1,38 @@
+package pages;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class BookingPage {
+	
+	WebDriver driver;
+	By DateField=By.xpath("//div[@class='dayContainer']//span[@aria-label='May 20, 2022']");
+	By PerformanceDates=By.xpath("//div[@class='full-fat-calendar__timeslot-labels full-fat-block t-affiliate-font-color t-validation-wrapper-border-color']//label[@class='f-label__wrapper c-quick-search__timeslot full-fat-calendar__timeslot-label']");
+	
+	public BookingPage(WebDriver driver)
+	{
+		 this.driver=driver;
+	}
+	
+	public void SelectDate(String Datevalue) {
+		WebElement element = driver.findElement(DateField);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		
+    }
+	
+	public void SelectPerformance(String time) {
+		List<WebElement> element = driver.findElements(PerformanceDates);
+		for(int i=0;i<element.size();i++)
+		{
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		}
+		
+    }
+
+}

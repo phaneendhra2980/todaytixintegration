@@ -1,0 +1,61 @@
+package tests;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.Status;
+
+import pages.BookingSeatPlanPage;
+import pages.SearchPage;
+import reports.ExtentTestManager;
+import utils.JavaScriptHelper;
+import utils.TestBase;
+
+public class BookTicketJourneyUITests  extends TestBase {
+
+	public WebDriver driver;
+	JavaScriptHelper javaScriptHelper;	
+	SearchPage searchPage ;
+	BookingSeatPlanPage bookingseatplanPage ;
+	
+	public BookTicketJourneyUITests()
+	{
+		super();
+	}
+	
+	@BeforeMethod
+	public void setUp() throws InterruptedException {
+		
+		initialization();		
+		searchPage = new SearchPage();
+		bookingseatplanPage = new BookingSeatPlanPage();
+		
+		
+	}
+
+	
+	
+	
+	@Test
+	public void SearchShow(){
+
+			
+		searchPage.SearchShow("TINA-The Tina Turner");
+		ExtentTestManager.getTest().log(Status.INFO, "Entered Search Show:" + "TINA-The Tina Turner");
+		searchPage.SelectShow();
+		ExtentTestManager.getTest().log(Status.INFO, "Selected Show Tile");
+		searchPage.ClickFindTickets();
+		ExtentTestManager.getTest().log(Status.INFO, "Clicked Find Tickets Button");
+		bookingseatplanPage.SelectDate("22");	
+		ExtentTestManager.getTest().log(Status.INFO, "Selected Date returned from Service");
+		bookingseatplanPage.SelectPerformance("15:00");		
+		bookingseatplanPage.ClickGetTickets();
+		
+
+    }
+
+	
+
+	
+}

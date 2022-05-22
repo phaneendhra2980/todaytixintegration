@@ -1,0 +1,79 @@
+package tests;
+
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static variables.Configuration.BASE_URL;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import Utils.JavaScriptHelper;
+import pages.BookingSeatPlanPage;
+import pages.SearchPage;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class UI_TESTS {
+
+	public WebDriver driver;
+	JavaScriptHelper javaScriptHelper;
+	static ExtentTest extentTest;
+	static ExtentReports report;
+	
+	@BeforeClass
+	public static void startTest()
+	{
+	report = new ExtentReports(System.getProperty("user.dir")+"\\ExtentReportResults.html");
+	extentTest = report.startTest("TodayTixCodeChallenge");
+	}
+
+	@BeforeMethod
+	public void SetUpClass() {
+
+		chromedriver().setup();
+		driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+        driver.get(BASE_URL);        
+        javaScriptHelper = new JavaScriptHelper(driver);
+		javaScriptHelper.waitUntilPageLoaded();
+	}
+	
+	
+	
+	@Test
+	public void SearchShow(){
+
+		SearchPage searchPage = new SearchPage(driver);
+		
+		searchPage.SearchShow("TINA-The Tina Turner");
+		extentTest.log(LogStatus.INFO, "Searching Show TINA-The Tina Turner");
+		javaScriptHelper.waitUntilPageLoaded();
+		searchPage.SelectShow();
+		extentTest.log(LogStatus.INFO, "Selecting the Show TINA-The Tina Turner");
+		searchPage.ClickFindTickets();
+		extentTest.log(LogStatus.INFO, "Clicking FindTickets Button");
+		BookingSeatPlanPage bookingseatplanPage = new BookingSeatPlanPage(driver);
+		bookingseatplanPage.SelectDate("May 20, 2022");
+		extentTest.log(LogStatus.INFO, "Selecting the Date from Calender");
+		bookingseatplanPage.SelectPerformance("19:30");
+		extentTest.log(LogStatus.INFO, "Selecting the Performance Time from Available Times");
+		bookingseatplanPage.ClickGetTickets();
+		extentTest.log(LogStatus.INFO, "Clicking GetTickets Button");
+
+    }
+
+	@AfterMethod
+	public void tearDown() {
+		// close and quit the browser
+		//driver.quit();
+	}
+
+}

@@ -1,0 +1,39 @@
+package models;
+
+import com.google.gson.annotations.SerializedName;
+
+   
+public class OrderFee {
+
+   @SerializedName("value")
+   int value;
+
+   @SerializedName("currency")
+   String currency;
+
+   @SerializedName("decimalPlaces")
+   int decimalPlaces;
+
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+    public int getValue() {
+        return value;
+    }
+    
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+    public String getCurrency() {
+        return currency;
+    }
+    
+    public void setDecimalPlaces(int decimalPlaces) {
+        this.decimalPlaces = decimalPlaces;
+    }
+    public int getDecimalPlaces() {
+        return decimalPlaces;
+    }
+    
+}

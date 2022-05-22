@@ -1,0 +1,45 @@
+package Utils;
+
+import static io.restassured.RestAssured.given;
+import static variables.Configuration.BASE_API_URL;
+
+import java.util.ArrayList;
+
+import org.apache.http.HttpStatus;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.ResponseBody;
+import io.restassured.response.ValidatableResponse;
+
+public class InventoryService {
+
+	public static ArrayList<String> getCheckOutJourney(String StartDate, String EndDate) {
+
+		RestAssured.baseURI = BASE_API_URL;
+		ArrayList<String> response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets").when()
+				.get("availability/products/6362/quantity/2/from/" + StartDate + "/to/" + EndDate + "?test=98").then().log().ifError().assertThat()
+			      .statusCode(HttpStatus.SC_OK).extract()			     
+				  .path("response.datetime");
+		
+		return response;
+
+	}
+
+	public static ArrayList<String> getAreas(String date, String time) {
+
+		RestAssured.baseURI = BASE_API_URL;
+		ArrayList<String> response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets")
+				.when().get("http://inventory-service.tixuk.io/api/v4/products/6362/areas?date=20220518&time=1930&quantity=2&includeSeatsAttributes=true").then().log().ifError().assertThat()
+			      .statusCode(HttpStatus.SC_OK).extract()			     
+				  .path("seatLumps.seats");
+		
+		given().queryParam("CUSTOMER_ID","68195")
+        .queryParam("PASSWORD","1234!")
+        .queryParam("Account_No","1") .when().get("http://demo.guru99.com/V4/sinkministatement.php").then().log().body();
+		
+		return response;
+
+	}
+
+}

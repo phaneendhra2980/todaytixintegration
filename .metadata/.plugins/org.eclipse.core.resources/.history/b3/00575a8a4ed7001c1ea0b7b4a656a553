@@ -1,0 +1,164 @@
+package models;
+
+public class Areas {
+	 Request RequestObject;
+	 Response ResponseObject;
+	 private String context = null;
+
+
+	 // Getter Methods 
+
+	 public Request getRequest() {
+	  return RequestObject;
+	 }
+
+	 public Response getResponse() {
+	  return ResponseObject;
+	 }
+
+	 public String getContext() {
+	  return context;
+	 }
+
+	 // Setter Methods 
+
+	 public void setRequest(Request requestObject) {
+	  this.RequestObject = requestObject;
+	 }
+
+	 public void setResponse(Response responseObject) {
+	  this.ResponseObject = responseObject;
+	 }
+
+	 public void setContext(String context) {
+	  this.context = context;
+	 }
+	}
+	public class Response {
+	 private String displayCurrency;
+	 private float availableCount;
+	 ArrayList < Object > areas = new ArrayList < Object > ();
+
+
+	 // Getter Methods 
+
+	 public String getDisplayCurrency() {
+	  return displayCurrency;
+	 }
+
+	 public float getAvailableCount() {
+	  return availableCount;
+	 }
+
+	 // Setter Methods 
+
+	 public void setDisplayCurrency(String displayCurrency) {
+	  this.displayCurrency = displayCurrency;
+	 }
+
+	 public void setAvailableCount(float availableCount) {
+	  this.availableCount = availableCount;
+	 }
+	}
+	public class Request {
+	 private String body;
+	 Query QueryObject;
+	 UrlParams UrlParamsObject;
+
+
+	 // Getter Methods 
+
+	 public String getBody() {
+	  return body;
+	 }
+
+	 public Query getQuery() {
+	  return QueryObject;
+	 }
+
+	 public UrlParams getUrlParams() {
+	  return UrlParamsObject;
+	 }
+
+	 // Setter Methods 
+
+	 public void setBody(String body) {
+	  this.body = body;
+	 }
+
+	 public void setQuery(Query queryObject) {
+	  this.QueryObject = queryObject;
+	 }
+
+	 public void setUrlParams(UrlParams urlParamsObject) {
+	  this.UrlParamsObject = urlParamsObject;
+	 }
+	}
+	public class UrlParams {
+	 private String productId;
+
+
+	 // Getter Methods 
+
+	 public String getProductId() {
+	  return productId;
+	 }
+
+	 // Setter Methods 
+
+	 public void setProductId(String productId) {
+	  this.productId = productId;
+	 }
+	}
+	public class Query {
+	 private String affiliateId;
+	 private String date;
+	 private String includeSeatsAttributes;
+	 private String quantity;
+	 private String time;
+
+
+	 // Getter Methods 
+
+	 public String getAffiliateId() {
+	  return affiliateId;
+	 }
+
+	 public String getDate() {
+	  return date;
+	 }
+
+	 public String getIncludeSeatsAttributes() {
+	  return includeSeatsAttributes;
+	 }
+
+	 public String getQuantity() {
+	  return quantity;
+	 }
+
+	 public String getTime() {
+	  return time;
+	 }
+
+	 // Setter Methods 
+
+	 public void setAffiliateId(String affiliateId) {
+	  this.affiliateId = affiliateId;
+	 }
+
+	 public void setDate(String date) {
+	  this.date = date;
+	 }
+
+	 public void setIncludeSeatsAttributes(String includeSeatsAttributes) {
+	  this.includeSeatsAttributes = includeSeatsAttributes;
+	 }
+
+	 public void setQuantity(String quantity) {
+	  this.quantity = quantity;
+	 }
+
+	 public void setTime(String time) {
+	  this.time = time;
+	 }
+	}

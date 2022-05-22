@@ -1,0 +1,29 @@
+package models;
+
+import java.util.ArrayList;
+
+public class Response {
+	private String displayCurrency;
+	private float availableCount;
+	ArrayList<Object> areas = new ArrayList<Object>();
+
+	// Getter Methods
+
+	public String getDisplayCurrency() {
+		return displayCurrency;
+	}
+
+	public float getAvailableCount() {
+		return availableCount;
+	}
+
+	// Setter Methods
+
+	public void setDisplayCurrency(String displayCurrency) {
+		this.displayCurrency = displayCurrency;
+	}
+
+	public void setAvailableCount(float availableCount) {
+		this.availableCount = availableCount;
+	}
+}

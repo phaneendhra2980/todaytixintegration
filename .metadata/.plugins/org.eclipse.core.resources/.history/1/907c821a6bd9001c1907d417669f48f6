@@ -1,0 +1,171 @@
+package Utils;
+
+import static config.Configuration.BASE_URL;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.support.events.WebDriverListener;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.log4testng.Logger;
+
+import bsh.org.objectweb.asm.Constants;
+import io.appium.java_client.safari.SafariDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestBase {
+
+	protected static WebDriver driver;
+	protected static Properties properties;
+
+	protected static WebDriverListener eventListener;
+	
+	protected static ChromeOptions chromeOptions;
+	protected static Logger log;
+
+	public static String browser;
+
+	/*
+	 * protected ITestResult result; protected ExtentReports extent; protected
+	 * ExtentTest extentTest;
+	 */
+	public TestBase() {
+
+		try {
+			properties = new Properties();
+			FileInputStream ip = new FileInputStream(
+					System.getProperty("user.dir") + "/src/main/java/com/crm/qa/config/config.properties");
+			properties.load(ip);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("file not found");
+		} catch (IOException e) {
+			System.out.println("io exception");
+
+		}
+
+	}
+
+//	protected static void initializaton() {
+//		String browserName = properties.getProperty("browser");
+//		driver = getDriver(browserName);
+//		log.info(browserName + " is configured");
+//		driver.manage().window().maximize();
+//		driver.manage().deleteAllCookies();
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtils.IMPLICIT_WAIT));
+//		driver.get(properties.getProperty(BASE_URL));
+//		// driver.get(BASE_URL);
+//
+//	}
+
+//	private static WebDriver getDriver(String browserName) {
+//		if (browserName.equalsIgnoreCase("chrome")) {
+//			WebDriverManager.chromedriver().setup();
+//			chromeOptions = new ChromeOptions();
+//			chromeOptions.addArguments("--start-maximized");
+//			return new ChromeDriver(chromeOptions);
+//		} else if (browserName.equalsIgnoreCase("FF")) {
+//			System.setProperty("webdriver.gecko.driver", "C://Users/Gorya/Desktop/Krishna_study/geckodriver.exe");
+//			return new FirefoxDriver();
+//		} else if (browserName.equalsIgnoreCase("IE")) {
+//			System.setProperty("webdriver.ie.driver", TestUtils.WORKSAPCE_PATH + "//drivers//IEDriverServer.exe");
+//			return new InternetExplorerDriver();
+//		}
+//		return null;
+//	}
+
+	public static void navaigateToEncorePage(WebDriver driver) {
+		driver.get(properties.getProperty(BASE_URL));
+	}
+
+	@BeforeSuite
+	public void beforeSuite(String browser) {
+		initWebDrivers();
+		TestBase.browser = browser;
+
+	}
+
+	public void initWebDrivers() {
+		WebDriverManager.chromedriver().setup();
+		WebDriverManager.firefoxdriver().setup();
+		WebDriverManager.operadriver().setup();
+		WebDriverManager.iedriver().setup();
+		WebDriverManager.edgedriver().setup();
+	}
+
+	@BeforeMethod
+	public void beforeMethod() {
+		launchWebBrowser();
+		setImplicitWait();
+		maximizeBrowserWindow();
+		
+	}
+
+	public void maximizeBrowserWindow() {
+		// driver.manage().window().maximize();
+		driver.manage().window().fullscreen();
+	}
+
+	public void setImplicitWait() {
+		driver.manage().timeouts().implicitlyWait(TestUtils.IMPLICIT_WAIT);
+	}
+
+	public void launchWebBrowser() {
+		try {
+			if (browser.equalsIgnoreCase("chrome")) {
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("disable-infobars");
+				driver = new ChromeDriver(options);
+
+			} else if (browser.equalsIgnoreCase("firefox")) {
+				driver = new FirefoxDriver();
+
+			} else if (browser.equalsIgnoreCase("edge")) {
+				driver = new EdgeDriver();
+
+			} else if (browser.equalsIgnoreCase("chrome-headless")) {
+
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("headless");
+				driver = new ChromeDriver(options);
+
+			} else if (browser.equalsIgnoreCase("firefox-headless")) {
+				FirefoxBinary firefoxBinary = new FirefoxBinary();
+				firefoxBinary.addCommandLineOptions("--headless");
+				FirefoxOptions firefoxOptions = new FirefoxOptions();
+				firefoxOptions.setBinary(firefoxBinary);
+				driver = new FirefoxDriver(firefoxOptions);
+			} 
+
+			
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+
+	}
+
+	public void tearDownMain() {
+		driver.manage().deleteAllCookies();
+		driver.close();
+		driver.quit();
+	}
+
+}

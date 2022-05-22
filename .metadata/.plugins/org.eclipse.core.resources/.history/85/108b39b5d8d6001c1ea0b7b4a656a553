@@ -1,0 +1,36 @@
+package com.checkoutjourney;
+
+
+import java.util.ArrayList;
+
+import org.testng.annotations.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class Test01_Get {
+	
+	
+	
+	
+  @Test
+  public void getCheckOutJourney() {  
+	  
+	  Date yourDate = new Date();
+
+	  SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
+	  String startdate = DATE_FORMAT.format(yourDate);
+      
+      System.out.println(date);
+	  
+	  ArrayList<String> response=  Utils.InventoryService.getCheckOutJourney("20220518", "20220520");
+	  for(String a:response){
+
+          System.out.println("The Date Time value fetched is "+a);
+
+      }
+	  
+  }
+}

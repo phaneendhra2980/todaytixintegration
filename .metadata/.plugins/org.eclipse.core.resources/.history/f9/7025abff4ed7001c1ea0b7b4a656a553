@@ -1,0 +1,18 @@
+package models;
+
+public class UrlParams {
+	 private String productId;
+
+
+	 // Getter Methods 
+
+	 public String getProductId() {
+	  return productId;
+	 }
+
+	 // Setter Methods 
+
+	 public void setProductId(String productId) {
+	  this.productId = productId;
+	 }
+	}

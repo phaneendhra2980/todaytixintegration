@@ -1,0 +1,46 @@
+package pages;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class BookingPage {
+
+	WebDriver driver;
+	By DateField = By.xpath("//div[@class='dayContainer']//span[@aria-label='May 20, 2022']");
+	By PerformanceDates = By.xpath(
+			"//div[@class='full-fat-calendar__timeslot-labels full-fat-block t-affiliate-font-color t-validation-wrapper-border-color']//label[@class='f-label__wrapper c-quick-search__timeslot full-fat-calendar__timeslot-label']");
+
+	public BookingPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public void SelectDate(String Datevalue) {
+		WebElement element = driver.findElement(DateField);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", element);
+		
+		WebElement dateWidgetFrom = new WebDriverWait(driver, Duration.ofSeconds(3))
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("ui-datepicker-calendar"))).get(0);
+	        //This are the columns of the from date picker table
+	        List<WebElement> columns = dateWidgetFrom.findElements(By.tagName("td"));
+
+	}
+
+	public void SelectPerformance(String time) {
+		List<WebElement> element = driver.findElements(PerformanceDates);
+		for (int i = 0; i < element.size(); i++) {
+			if (element.get(i).getText().contains(time)) {
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();", element.get(i));
+			}
+
+		}
+
+	}
+}

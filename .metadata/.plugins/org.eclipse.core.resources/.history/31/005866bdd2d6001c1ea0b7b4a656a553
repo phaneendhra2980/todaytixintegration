@@ -1,0 +1,19 @@
+package Utils;
+
+import static io.restassured.RestAssured.*;
+import static variables.Configuration.BASE_API_URL;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+
+public class InventoryService {
+
+	public void getCheckOutJourney(String StartDate, String EndDate) {
+
+		RestAssured.baseURI = BASE_API_URL;
+		  given().contentType(ContentType.JSON).header("affiliateId", "encoretickets") .when().get("quantity/2/from/"+StartDate+"/to/"+EndDate+"?test=98").then().log()
+	      .body();
+
+	}
+
+}

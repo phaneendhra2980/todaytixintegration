@@ -1,0 +1,45 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import Utils.JavaScriptHelper;
+
+public class SearchPage {
+	
+	WebDriver driver;
+	JavaScriptHelper javaScriptHelper;
+	By SearchField=By.xpath("//input[@placeholder='Search by show or attraction' and @type='search']");
+	By ShowField=By.xpath("//div[@class='c-quick-search__item t-card-primary-hover']");
+	By FindTicketsButton= By.xpath("//button[@type='submit' and @role='button']");
+	
+	public SearchPage(WebDriver driver,ExtentTest test)
+	{
+		 this.driver=driver;
+		 javaScriptHelper = new JavaScriptHelper(driver);
+		 this.test=test;
+	}
+	
+	public void SearchShow(String Show) {
+		javaScriptHelper.waitUntilPageLoaded();		
+		driver.findElement(SearchField).sendKeys(Show);
+		
+    }
+	
+	public void SelectShow() {
+		WebElement element = driver.findElement(ShowField);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		
+    }
+	
+	 public void ClickFindTickets() {
+		    WebElement element = driver.findElement(FindTicketsButton);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", element);
+	        
+	    }
+
+}

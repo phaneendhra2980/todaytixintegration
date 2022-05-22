@@ -1,0 +1,9 @@
+package Utils;
+
+io.restassured.RestAssured.*
+io.restassured.matcher.RestAssuredMatchers.*
+org.hamcrest.Matchers.*
+
+public class InventoryService {
+
+}

@@ -1,0 +1,29 @@
+package com.checkoutjourney;
+
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
+import static io.restassured.RestAssured.*;
+import static variables.Configuration.BASE_API_URL;
+
+
+public class Test01_Get {
+	
+	
+	
+	
+  @Test
+  public void getCheckOutJourney() {
+	  
+//	  RestAssured.baseURI = BASE_API_URL;
+//	  given().contentType(ContentType.JSON).header("affiliateId", "encoretickets") .when().get("quantity/2/from/20220518/to/20220520?test=98").then().log()
+//      .body();
+	  
+	  ValidatableResponse response=  Utils.InventoryService.getCheckOutJourney("20220518", "20220520");
+	  System.out.println(response.toString());
+	  
+  }
+}

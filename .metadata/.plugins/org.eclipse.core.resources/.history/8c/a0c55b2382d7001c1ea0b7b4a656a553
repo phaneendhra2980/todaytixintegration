@@ -1,0 +1,30 @@
+package com.checkoutjourney;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+
+public class TodayTixMobile {
+  @Test
+  public void f() {
+  }
+  @BeforeMethod
+  public void testInit() {
+	  if (driver != null) {
+	  driver.launchApp();
+	  driver.startActivity(new Activity("com.example.android.apis", ".view.Controls1"));
+	  }
+	 }
+  
+  @AfterMethod
+  public void testCleanup() {
+	  if (driver != null) {
+	  driver.closeApp();
+	  }
+
+  @BeforeClass
+  public void beforeClass() {
+  }
+
+}

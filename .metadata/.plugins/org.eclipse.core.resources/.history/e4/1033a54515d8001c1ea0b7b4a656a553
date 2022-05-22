@@ -1,0 +1,8 @@
+package pages;
+
+import org.openqa.selenium.By;
+
+public class BasketPage {
+	By ImportantSeatInfoLink = By.xpath("//a[@class='seat-info__link']");
+
+}

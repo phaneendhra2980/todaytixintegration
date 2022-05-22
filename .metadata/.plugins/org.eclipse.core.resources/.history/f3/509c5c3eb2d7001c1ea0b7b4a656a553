@@ -1,0 +1,18 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class SearchPage {
+	
+	WebDriver driver;
+	By SearchField=By.xpath("//input[@placeholder='Search by show or attraction' and @type='search']");
+	
+	public SearchPage(WebDriver driver)
+	{}
+	
+	public void SearchShow(String Show) {
+        driver.findElement(getStarted).click();
+    }
+
+}

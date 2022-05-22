@@ -1,0 +1,9 @@
+package com.checkoutjourney;
+
+import org.testng.annotations.Test;
+
+public class Test01_Get {
+  @Test
+  public void f() {
+  }
+}

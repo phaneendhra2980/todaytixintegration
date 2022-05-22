@@ -1,0 +1,66 @@
+package com.checkoutjourney;
+
+//import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+//import static variables.Configuration.BASE_URL;
+//
+//import java.time.Duration;
+//
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.testng.annotations.AfterMethod;
+//import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import Utils.JavaScriptHelper;
+import pages.BookingSeatPlanPage;
+import pages.SearchPage;
+import pages.BasePage;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class UI_TESTS extends BasePage{
+
+	//public WebDriver driver;
+	JavaScriptHelper javaScriptHelper;
+	
+
+//	@BeforeMethod
+//	public void SetUpClass() {
+//
+//		chromedriver().setup();
+//		driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().deleteAllCookies();
+//        driver.manage().window().maximize();
+//        driver.get(BASE_URL);
+//        javaScriptHelper = new JavaScriptHelper(driver);
+//		javaScriptHelper.waitUntilPageLoaded();
+//	}
+	
+	
+	
+	@Test
+	public void SearchShow(){
+
+		SearchPage searchPage = new SearchPage(driver);
+		
+		searchPage.SearchShow("TINA-The Tina Turner");
+		logger.log(LogStatus.INFO, "Searching Show TINA-The Tina Turner");
+		javaScriptHelper.waitUntilPageLoaded();
+		searchPage.SelectShow();
+		logger.log(LogStatus.INFO, "Selecting the Show TINA-The Tina Turner");
+		searchPage.ClickFindTickets();
+		logger.log(LogStatus.INFO, "Clicking FindTickets Button");
+		BookingSeatPlanPage bookingseatplanPage = new BookingSeatPlanPage(driver);
+		bookingseatplanPage.SelectDate("May 20, 2022");
+		bookingseatplanPage.SelectPerformance("19:30");
+		bookingseatplanPage.ClickGetTickets();
+
+    }
+
+//	@AfterMethod
+//	public void tearDown() {
+//		// close and quit the browser
+//		//driver.quit();
+//	}
+
+}

@@ -1,0 +1,83 @@
+package tests;
+
+import static org.junit.Assert.*;
+import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.junit.Test;
+
+public class appium {
+
+	public AndroidDriver<MobileElement> driver;
+	 
+	@Test
+	public void test() {
+		MobileElement el1 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/skip_button");
+	    el1.click();
+	    MobileElement el2 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/select_city_button");
+	    el2.click();
+	    MobileElement el3 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[6]/android.widget.TextView");
+	    el3.click();
+	    MobileElement el5 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.LinearLayout/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView[2]");
+	    el5.click();
+	    MobileElement el6 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.LinearLayout/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView[2]");
+	    el6.click();
+	    MobileElement el7 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/title");
+	    el7.click();
+	    MobileElement el8 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/footer_button");
+	    el8.click();
+	    MobileElement el9 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.FrameLayout[6]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView");
+	    el9.click();
+	    MobileElement el10 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/title");
+	    el10.click();
+	    MobileElement el11 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View/android.view.View[1]");
+	    el11.click();
+	    (new TouchAction(driver))
+	      .press({x: 761, y: 401})
+	      .moveTo({x: 641: y: 497})
+	      .release()
+	      .perform()
+	    (new TouchAction(driver))
+	      .press({x: 285, y: 470})
+	      .moveTo({x: 285: y: 463})
+	      .release()
+	      .perform()
+	    (new TouchAction(driver)).tap(699, 1605).perform()
+	    MobileElement el12 = (MobileElement) driver.findElementById("com.todaytix.TodayTix:id/title");
+	    el12.click();
+	    (new TouchAction(driver)).tap(751, 1550).perform()
+	    (new TouchAction(driver)).tap(861, 1447).perform()
+	    (new TouchAction(driver)).tap(425, 1947).perform()
+	}
+	
+	@After
+	  public void tearDown() {
+	    driver.quit();
+	  }
+	@Before
+	  public void setUp() throws MalformedURLException {
+	    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+	    desiredCapabilities.setCapability("appium:deviceName", "SM-G970U1");
+	    desiredCapabilities.setCapability("appium:udid", "R58M22XKWAH");
+	    desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
+	    desiredCapabilities.setCapability("appium:appPackage", "com.todaytix.TodayTix");
+	    desiredCapabilities.setCapability("platformName", "Android");
+	    desiredCapabilities.setCapability("appium:appActivity", "com.todaytix.TodayTix.activity.MainTabsActivity");
+	    desiredCapabilities.setCapability("appium:ensureWebviewsHavePages", true);
+	    desiredCapabilities.setCapability("appium:nativeWebScreenshot", true);
+	    desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
+	    desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
+
+	    URL remoteUrl = new URL("https://dev-us-mv-0.headspin.io:3029/v0/f8498d3eaf244972872e12a231beac3a/wd/hub");
+
+	    driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+	  }
+
+}

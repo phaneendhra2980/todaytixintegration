@@ -1,0 +1,13 @@
+package Utils;
+
+
+import static variables.Configuration.*;
+
+public class InventoryService {
+
+	public static void GetCheckOutJourney() {
+
+		given().when().get(BASE_API_URL).then().log().all();
+	}
+
+}

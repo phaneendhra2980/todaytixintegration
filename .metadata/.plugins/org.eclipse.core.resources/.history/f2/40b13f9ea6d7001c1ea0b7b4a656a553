@@ -1,0 +1,65 @@
+package Utils;
+
+import static io.restassured.RestAssured.given;
+import static variables.Configuration.BASE_API_URL;
+
+import java.util.ArrayList;
+
+import org.apache.http.HttpStatus;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import models.SeatLumps;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
+
+public class InventoryService {
+
+	public static ArrayList<String> getCheckOutJourney(String StartDate, String EndDate) {
+
+		RestAssured.baseURI = BASE_API_URL;
+		ArrayList<String> response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets").when()
+				.get("availability/products/6362/quantity/2/from/" + StartDate + "/to/" + EndDate + "?test=98").then().log().ifError().assertThat()
+			      .statusCode(HttpStatus.SC_OK).extract()			     
+				  .path("response.datetime");
+		
+		return response;
+
+	}
+
+	public static JSONArray  getAreas(String date, String time) {
+
+		RestAssured.baseURI = BASE_API_URL;
+		Response response = given().contentType(ContentType.JSON).header("affiliateId", "encoretickets")
+				.when().get("http://inventory-service.tixuk.io/api/v4/products/6362/areas?date=20220520&time=1930&quantity=2&includeSeatsAttributes=true").then().log().ifError().assertThat()
+			      .statusCode(HttpStatus.SC_OK).extract().response();		     
+				 
+		
+//		ResponseBody body = response.getBody(); 
+//		SeatLumps seatlumps = body.as(SeatLumps.class);
+		
+		//JSONObject arearesponse = new JSONObject(response.getBody().asString()).getJSONObject("response");
+		//JSONArray areas = arearesponse.getJSONArray("areas");
+		
+		Gson gson = new GsonBuilder().serializeNulls().create();
+        Response res = gson.fromJson(response.getBody().asString(), Response.class);
+
+        System.out.println("Entries: " + res.getResult().getMap().getEntry());
+		
+		
+		
+		return areas;
+
+	}
+
+}
