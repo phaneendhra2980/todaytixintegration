@@ -1,4 +1,0 @@
-BASE_URL = https://www.encoretickets.co.uk/
-BASE_API_URL=http://inventory-service.tixuk.io/api/v4/
-BROWSER = chrome
-SEARCHTESM

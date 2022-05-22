@@ -1,7 +1,0 @@
-package pages;
-
-public class SearchPage {
-	
-	By SearchField=By.xpath("//h1");
-
-}

@@ -1,3 +1,0 @@
-BASE_URL = https://www.encoretickets.co.uk/booking/seating-plan?product_id=6362&content_product_id=6362&product_type=show&performance_type=E&venue_id=112&qt=2&slot=19:00&date=2022-05-23&booking_ends=2022-12-18&booking_starts=2022-05-23
-BASE_API_URL=http://inventory-service.tixuk.io/api/v4/
-BROWSER = chrome

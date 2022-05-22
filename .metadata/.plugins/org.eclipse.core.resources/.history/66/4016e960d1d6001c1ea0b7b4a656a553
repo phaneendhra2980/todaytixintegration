@@ -1,7 +1,0 @@
-package variables;
-
-public class Configuration {
-	public static final String BASE_URL = "https://www.encoretickets.co.uk/";
-	public static final String BASE_API_URL="http://inventory-service.tixuk.io/api/v4/availability/products/6362/quantity/2/from/20220519/to/20220520?test=98";
-
-}

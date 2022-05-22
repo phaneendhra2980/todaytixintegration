@@ -1,6 +1,0 @@
-package variables;
-
-public class Configuration {
-	public static final String BASE_URL = "https://www.mytheresa.com/en-de/";
-
-}
